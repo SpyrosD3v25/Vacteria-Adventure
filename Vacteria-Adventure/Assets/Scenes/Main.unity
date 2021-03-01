@@ -206,6 +206,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &951432846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 951432847}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &951432847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951432846}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2076856948
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2076856950}
   - component: {fileID: 2076856949}
+  - component: {fileID: 2076856951}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -235,11 +266,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e17b6ba77cb2954db1a1b652b43199b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cell: {fileID: 0}
-  PlaceHolder: {fileID: 0}
-  Head: {fileID: 0}
-  Simple: {fileID: 0}
-  Hardened: {fileID: 0}
+  Cell: {fileID: 1922564934612005583, guid: df44d3cfeda495c40b9d1018656c9ab6, type: 3}
+  PlaceHolder: {fileID: 8966469327442982309, guid: c24be49a6401de94b950a4019ba7395e, type: 3}
+  Head: {fileID: 21300000, guid: 30d294ea49582d84e96c1490bc7e2e04, type: 3}
+  Simple: {fileID: 21300000, guid: 09fe8b8dc51c607439f4ce07f5a3f15a, type: 3}
+  Hardened: {fileID: 21300000, guid: cd1288dd982aa8d409668bd22847138a, type: 3}
 --- !u!4 &2076856950
 Transform:
   m_ObjectHideFlags: 0
@@ -254,3 +285,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2076856951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076856948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb273427858df441a02d623c80f737f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
