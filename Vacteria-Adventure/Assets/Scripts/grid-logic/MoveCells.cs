@@ -7,25 +7,27 @@ public class MoveCells : MonoBehaviour
     private bool isAlreadyPressed = false;
     private GameObject PlaceHolder;
     private Cell MovingCell;
-    private bool isMoving = false;
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (alib.isEditMode)
         {
-            if (!isAlreadyPressed)
+            if (Input.GetMouseButton(0))
             {
-                GetPositionData(true);
+                if (!isAlreadyPressed)
+                {
+                    GetPositionData(true);
+                }
+                isAlreadyPressed = true;
             }
-            isAlreadyPressed = true;
-        }
-        else if (!Input.GetMouseButton(0))
-        {
-            if (isAlreadyPressed)
+            else if (!Input.GetMouseButton(0))
             {
-                GetPositionData(false);
+                if (isAlreadyPressed)
+                {
+                    GetPositionData(false);
+                }
+                isAlreadyPressed = false;
             }
-            isAlreadyPressed = false;
         }
     }
 
@@ -47,16 +49,16 @@ public class MoveCells : MonoBehaviour
                 MovingCell = grid.instance.listOfCells[(x, y)];
                 if (MovingCell is MovingCell && ((MovingCell)MovingCell).mayMove)
                 {
-                    isMoving = true;
+                    alib.isMoving = true;
                     CreatePlaceHolder(MovingCell.cellType);
                 }
             }
         }
         else
         {
-            if (isMoving)
+            if (alib.isMoving)
             {
-                isMoving = false;
+                alib.isMoving = false;
                 Destroy(PlaceHolder);
                 if (grid.instance.listOfCells.ContainsKey((x, y)))
                 {
