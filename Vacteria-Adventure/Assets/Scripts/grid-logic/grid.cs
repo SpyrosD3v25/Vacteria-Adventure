@@ -9,6 +9,7 @@ public class grid : MonoBehaviour
     public Dictionary<(int, int), Cell> listOfCells = new Dictionary<(int, int), Cell>();
     public GameObject Cell;
     public GameObject PlaceHolder;
+    public GameObject liquidParticle;
     public Sprite Head;
     public Sprite Simple;
     public Sprite Hardened;
@@ -26,17 +27,17 @@ public class grid : MonoBehaviour
     private void Start()
     {
         CreateCell(new int[] { 0, 0 }, alib.CellType.head);
-        CreateCell(new int[] { 1, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 2, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 3, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 4, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 5, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 6, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 6, 1 }, alib.CellType.simple);
-        CreateCell(new int[] { 6, -2 }, alib.CellType.laser);
-        CreateCell(new int[] { 0, 3 }, alib.CellType.dirt);
-        CreateCell(new int[] { 1, 3 }, alib.CellType.dirt);
-        CreateCell(new int[] { -1, 3 }, alib.CellType.stone);
+        //CreateCell(new int[] { 1, 0 }, alib.CellType.simple);
+        //CreateCell(new int[] { 2, 0 }, alib.CellType.simple);
+        //CreateCell(new int[] { 3, 0 }, alib.CellType.simple);
+        //CreateCell(new int[] { 4, 0 }, alib.CellType.simple);
+        //CreateCell(new int[] { 5, 0 }, alib.CellType.simple);
+        //CreateCell(new int[] { 6, 0 }, alib.CellType.simple);
+        //CreateCell(new int[] { 6, 1 }, alib.CellType.simple);
+        //CreateCell(new int[] { 6, -2 }, alib.CellType.laser);
+        //CreateCell(new int[] { 0, 3 }, alib.CellType.dirt);
+        //CreateCell(new int[] { 1, 3 }, alib.CellType.dirt);
+        //CreateCell(new int[] { -1, 3 }, alib.CellType.stone);
     }
 
     public void CreateCell(int[] position, alib.CellType cellType)
@@ -75,6 +76,10 @@ public class grid : MonoBehaviour
             default: return;
         }
         Cell b = a.GetComponent<Cell>();
+        for (int i = 0; i < 150; i++)
+        {
+            Instantiate(liquidParticle, a.transform.position, Quaternion.identity, a.transform);
+        }
         b.position = position;
         b.cellType = cellType;
         b.UpdateData();
@@ -116,6 +121,20 @@ public class grid : MonoBehaviour
             if (!result) result = Check(((pos.Item1, pos.Item2 - 1)), searched);
         }
         return result;
+    }
+
+    public Cell[] GetSideCells(int x, int y)
+    {
+        Cell[] a = new Cell[4];
+        if (listOfCells.ContainsKey((x + 1, y)))
+            a[0] = listOfCells[(x + 1, y)];
+        if (listOfCells.ContainsKey((x - 1, y)))
+            a[1] = listOfCells[(x - 1, y)];
+        if (listOfCells.ContainsKey((x, y + 1)))
+            a[2] = listOfCells[(x, y + 1)];
+        if (listOfCells.ContainsKey((x, y - 1)))
+            a[3] = listOfCells[(x, y - 1)];
+        return a;
     }
 
     public void DestroyCell((int, int) a)
