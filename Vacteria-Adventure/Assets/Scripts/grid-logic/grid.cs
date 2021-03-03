@@ -14,6 +14,12 @@ public class grid : MonoBehaviour
     public Sprite Simple;
     public Sprite Hardened;
 
+    //Movement stuff (I AM CURRENTLY DRINKING MILK!!!!!!)
+    const int max_width = 100;
+    const int min_width = 100;
+
+    public int[,] positions2D = new int[max_width, min_width];
+
     public delegate void Action();
 
     public Action UpdateCells;
@@ -84,6 +90,7 @@ public class grid : MonoBehaviour
         b.cellType = cellType;
         b.UpdateData();
         b.UpdateKey();
+
     }
 
     public bool isPositionValid((int, int) pos, (int, int)? old)
