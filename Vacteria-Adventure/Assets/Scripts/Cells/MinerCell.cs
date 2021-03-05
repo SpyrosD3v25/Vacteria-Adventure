@@ -44,7 +44,7 @@ public class MinerCell : SimpleCell
             if (!grid.instance.listOfCells.ContainsKey((position[0] + a[0], position[1] + a[1]))) Mine();
             else
             {
-                if (grid.instance.listOfCells[(position[0] + a[0], position[1] + a[1])] is Material)
+                if (grid.instance.listOfCells[(position[0] + a[0], position[1] + a[1])] is OreCell)
                 {
                     alib.CellType type = grid.instance.listOfCells[(position[0] + a[0], position[1] + a[1])].cellType;
                     grid.instance.listOfCells[(position[0] + a[0], position[1] + a[1])].Destroy();

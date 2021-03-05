@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Liquid
+    uniqueID: 3326492433
+    locked: 0
+  - name: Cell
+    uniqueID: 1280929037
+    locked: 0
