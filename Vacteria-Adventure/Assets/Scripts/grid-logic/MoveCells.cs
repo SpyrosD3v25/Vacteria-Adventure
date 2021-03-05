@@ -47,10 +47,11 @@ public class MoveCells : MonoBehaviour
             if (grid.instance.listOfCells.ContainsKey((x, y)))
             {
                 MovingCell = grid.instance.listOfCells[(x, y)];
-                if (MovingCell is MovingCell && ((MovingCell)MovingCell).mayMove)
+                if (MovingCell is MovingCell cell && cell.mayMove)
                 {
                     alib.isMoving = true;
-                    CreatePlaceHolder(MovingCell.cellType);
+                    cell.setMove();
+                    //CreatePlaceHolder(MovingCell.cellType);
                 }
             }
         }
@@ -59,47 +60,9 @@ public class MoveCells : MonoBehaviour
             if (alib.isMoving)
             {
                 alib.isMoving = false;
-                Destroy(PlaceHolder);
-                if (grid.instance.listOfCells.ContainsKey((x, y)))
-                {
-                    Cell a = grid.instance.listOfCells[(x, y)];
-                    if (a.cellType == alib.CellType.laser)
-                    {
-                        a.Destroy();
-                        MoveCell(x, y);
-                    }
-                    else if (a.cellType == alib.CellType.simple)
-                    {
-                        if (MovingCell.cellType == alib.CellType.simple)
-                        {
-                            a.Destroy();
-                            MovingCell.Destroy();
-                            grid.instance.CreateCell(new int[] { x, y }, alib.CellType.hardened);
-                            grid.instance.UpdateCells();
-                            grid.instance.OnLaser();
-                        }
-                        if (MovingCell.cellType == alib.CellType.hardened)
-                        {
-                            a.Destroy();
-                            MovingCell.Destroy();
-                            grid.instance.CreateCell(new int[] { x, y }, alib.CellType.miner);
-                            grid.instance.UpdateCells();
-                            grid.instance.OnLaser();
-                        }
-                    }
-                    else if (a.cellType == alib.CellType.hardened)
-                    {
-                        if (MovingCell.cellType == alib.CellType.simple)
-                        {
-                            a.Destroy();
-                            MovingCell.Destroy();
-                            grid.instance.CreateCell(new int[] { x, y }, alib.CellType.miner);
-                            grid.instance.UpdateCells();
-                            grid.instance.OnLaser();
-                        }
-                    }
-                }
-                else
+                if (PlaceHolder != null) Destroy(PlaceHolder);
+                ((MovingCell)MovingCell).setMove();
+                if (!grid.instance.listOfCells.ContainsKey((x, y)))
                 {
                     MoveCell(x, y);
                 }

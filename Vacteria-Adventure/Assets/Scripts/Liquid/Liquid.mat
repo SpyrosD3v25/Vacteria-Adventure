@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Liquid
-  m_Shader: {fileID: -6465566751694194690, guid: bee7a8294ea95db44ac910a580c5002c, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: a86db708c49f9e545be6000637c727f6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -107,6 +107,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _EnvironmentReflections: 1
+    - _FoamThickness: 30
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -120,13 +121,15 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Surface: 1
+    - _Thickness: 0.232
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
     - Color_c15d2542457e4829a05d2f055d07459f: {r: 0.5529412, g: 1, b: 0.58431375, a: 1}
     - Color_f896c056693a4b459d890ac0a54652da: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.6955509, g: 0, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamColor: {r: 0.6415094, g: 0, b: 0.14221083, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

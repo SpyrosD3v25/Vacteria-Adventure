@@ -10,7 +10,7 @@ public class SimpleCell : MovingCell
     {
         base.UpdateData();
         isActive = grid.instance.isPositionValid((position[0], position[1]), null);
-        mayMove = isActive;
+        //mayMove = isActive;
     }
 
     public override void TextureUpdate()

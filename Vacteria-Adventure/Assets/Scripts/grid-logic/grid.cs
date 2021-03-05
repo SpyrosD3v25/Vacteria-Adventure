@@ -33,13 +33,13 @@ public class grid : MonoBehaviour
     private void Start()
     {
         CreateCell(new int[] { 0, 0 }, alib.CellType.head);
-        //CreateCell(new int[] { 1, 0 }, alib.CellType.simple);
-        //CreateCell(new int[] { 2, 0 }, alib.CellType.simple);
-        //CreateCell(new int[] { 3, 0 }, alib.CellType.simple);
-        //CreateCell(new int[] { 4, 0 }, alib.CellType.simple);
-        //CreateCell(new int[] { 5, 0 }, alib.CellType.simple);
-        //CreateCell(new int[] { 6, 0 }, alib.CellType.simple);
-        //CreateCell(new int[] { 6, 1 }, alib.CellType.simple);
+        CreateCell(new int[] { 1, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 2, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 3, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 4, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 5, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 6, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 6, 1 }, alib.CellType.simple);
         //CreateCell(new int[] { 6, -2 }, alib.CellType.laser);
         //CreateCell(new int[] { 0, 3 }, alib.CellType.dirt);
         //CreateCell(new int[] { 1, 3 }, alib.CellType.dirt);
@@ -72,19 +72,22 @@ public class grid : MonoBehaviour
                 break;
 
             case alib.CellType.stone:
-                a.AddComponent<Material>();
+                a.AddComponent<SimpleCell>();
                 break;
 
             case alib.CellType.dirt:
-                a.AddComponent<Material>();
+                a.AddComponent<SimpleCell>();
                 break;
 
             default: return;
         }
         Cell b = a.GetComponent<Cell>();
-        for (int i = 0; i < 150; i++)
+        GameObject c;
+        for (int i = 0; i < 45; i++)
         {
-            Instantiate(liquidParticle, a.transform.position, Quaternion.identity, a.transform);
+            c = Instantiate(liquidParticle, a.transform.position, Quaternion.identity);
+            AttractToParent at = c.GetComponent<AttractToParent>();
+            at.TargetPosition = a.transform;
         }
         b.position = position;
         b.cellType = cellType;
