@@ -31,12 +31,6 @@ public class MoveCells : MonoBehaviour
         }
     }
 
-    private void CreatePlaceHolder(alib.CellType type)
-    {
-        PlaceHolder = Instantiate(grid.instance.PlaceHolder);
-        PlaceHolder.GetComponent<PlaceHolder>().cellType = type;
-    }
-
     private void GetPositionData(bool onCreate)
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -51,7 +45,6 @@ public class MoveCells : MonoBehaviour
                 {
                     alib.isMoving = true;
                     cell.setMove();
-                    //CreatePlaceHolder(MovingCell.cellType);
                 }
             }
         }
@@ -64,16 +57,9 @@ public class MoveCells : MonoBehaviour
                 ((MovingCell)MovingCell).setMove();
                 if (!grid.instance.listOfCells.ContainsKey((x, y)))
                 {
-                    MoveCell(x, y);
+                    grid.instance.MoveCell(x, y, MovingCell);
                 }
             }
         }
-    }
-
-    public void MoveCell(int x, int y)
-    {
-        ((MovingCell)MovingCell).Move(new int[] { x, y });
-        grid.instance.UpdateCells?.Invoke();
-        grid.instance.OnLaser?.Invoke();
     }
 }
