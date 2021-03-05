@@ -78,20 +78,6 @@ public class grid : MonoBehaviour
                 c.TeamMove();
             }
         }
-
-        //SortedCellPositions.Sort();
-
-        //Debug.Log(SortedCellPositions.Count);
-
-        //foreach (var cellPos in SortedCellPositions)
-        //{
-        //    Cell curr_cell = listOfCells[(cellPos.Item1, cellPos.Item2)];
-        //    if (curr_cell is MovingCell)
-        //    {
-        //        ((MovingCell)curr_cell).Move(new int[] { cellPos.Item2, cellPos.Item1 + 1 });
-        //        UpdateCells?.Invoke();
-        //    }
-        //}
     }
 
     public void MoveCell(int x, int y, Cell c)

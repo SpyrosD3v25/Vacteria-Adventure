@@ -121,15 +121,15 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Surface: 1
-    - _Thickness: 0.232
+    - _Thickness: 0.414
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
     - Color_c15d2542457e4829a05d2f055d07459f: {r: 0.5529412, g: 1, b: 0.58431375, a: 1}
     - Color_f896c056693a4b459d890ac0a54652da: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.6955509, g: 0, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.16993795, b: 0.99215686, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 0.6415094, g: 0, b: 0.14221083, a: 0}
+    - _FoamColor: {r: 0, g: 2.520743, b: 1.7172853, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

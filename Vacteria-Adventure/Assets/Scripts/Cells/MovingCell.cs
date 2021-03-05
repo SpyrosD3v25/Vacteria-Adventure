@@ -57,7 +57,6 @@ public class MovingCell : Cell
         Cell a = null;
         if (!grid.instance.listOfCells.ContainsKey((position[0] + offset.Item1, position[1] + offset.Item2)))
         {
-            Debug.Log("I am at a free position BONG " + position[0] + " " + position[1]);
             grid.instance.MoveBody(position[0] + offset.Item1, position[1] + offset.Item2, this);
             if (grid.instance.listOfCells.ContainsKey((position[0] - offset.Item1 * 2, position[1] - offset.Item2 * 2)))
             {

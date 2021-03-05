@@ -72,7 +72,6 @@ public class Cell : MonoBehaviour
     {
         if (!grid.instance.listOfCells.ContainsKey((position[0], position[1])))
         {
-            Debug.Log("Added key" + position[0] + "" + position[1]);
             grid.instance.listOfCells.Add((position[0], position[1]), this);
         }
     }
