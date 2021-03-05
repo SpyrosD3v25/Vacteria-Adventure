@@ -6,6 +6,8 @@ public static class alib
 {
     public enum CellType { head, simple, hardened, laser, stone, dirt, miner };
 
+    public enum Direction { UP, DOWN, RIGHT, LEFT };
+
     public enum GENES { Production, Speed, Hardness, Immune, Foods, ToxicAbility, Volume };
 
     public static bool isMoving = false;

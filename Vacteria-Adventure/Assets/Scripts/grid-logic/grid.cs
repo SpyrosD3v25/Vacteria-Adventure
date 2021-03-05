@@ -25,9 +25,93 @@ public class grid : MonoBehaviour
     public Action UpdateCells;
     public Action OnLaser;
 
+    public alib.Direction current_direction;
+    public int tick = 0;
+
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Update()
+    {
+        tick++;
+        if (tick == 50)
+        {
+            BodyMovement();
+            tick = 0;
+        }
+    }
+
+    public void BodyMovement()
+    {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        alib.Direction dir = alib.Direction.UP;
+        if (horizontal == 1)
+        {
+            dir = alib.Direction.RIGHT;
+        }
+        else if (horizontal == -1)
+        {
+            dir = alib.Direction.LEFT;
+        }
+        else if (vertical == 1)
+        {
+            dir = alib.Direction.UP;
+        }
+        else if (vertical == -1)
+        {
+            dir = alib.Direction.DOWN;
+        }
+        else
+        {
+            return;
+        }
+        current_direction = dir;
+
+        List<Cell> Cells = new List<Cell>();
+
+        foreach (var cell in listOfCells.Values)
+        {
+            Cells.Add(cell);
+        }
+        foreach (var cell in Cells)
+        {
+            if (cell is MovingCell c)
+            {
+                Debug.Log(c.position[0] + " " + c.position[1]);
+                c.TeamMove();
+            }
+        }
+
+        //SortedCellPositions.Sort();
+
+        //Debug.Log(SortedCellPositions.Count);
+
+        //foreach (var cellPos in SortedCellPositions)
+        //{
+        //    Cell curr_cell = listOfCells[(cellPos.Item1, cellPos.Item2)];
+        //    if (curr_cell is MovingCell)
+        //    {
+        //        ((MovingCell)curr_cell).Move(new int[] { cellPos.Item2, cellPos.Item1 + 1 });
+        //        UpdateCells?.Invoke();
+        //    }
+        //}
+    }
+
+    public void MoveCell(int x, int y, Cell c)
+    {
+        ((MovingCell)c).Move(new int[] { x, y });
+        UpdateCells?.Invoke();
+        OnLaser?.Invoke();
+    }
+
+    public void MoveBody(int x, int y, Cell c)
+    {
+        ((MovingCell)c).MoveBody(new int[] { x, y });
+        UpdateCells?.Invoke();
+        OnLaser?.Invoke();
     }
 
     private void Start()
@@ -40,10 +124,7 @@ public class grid : MonoBehaviour
         CreateCell(new int[] { 5, 0 }, alib.CellType.simple);
         CreateCell(new int[] { 6, 0 }, alib.CellType.simple);
         CreateCell(new int[] { 6, 1 }, alib.CellType.simple);
-        //CreateCell(new int[] { 6, -2 }, alib.CellType.laser);
-        //CreateCell(new int[] { 0, 3 }, alib.CellType.dirt);
-        //CreateCell(new int[] { 1, 3 }, alib.CellType.dirt);
-        //CreateCell(new int[] { -1, 3 }, alib.CellType.stone);
+        CreateCell(new int[] { 4, 3 }, alib.CellType.stone);
     }
 
     public void CreateCell(int[] position, alib.CellType cellType)
@@ -131,27 +212,5 @@ public class grid : MonoBehaviour
             if (!result) result = Check(((pos.Item1, pos.Item2 - 1)), searched);
         }
         return result;
-    }
-
-    public Cell[] GetSideCells(int x, int y)
-    {
-        Cell[] a = new Cell[4];
-        if (listOfCells.ContainsKey((x + 1, y)))
-            a[0] = listOfCells[(x + 1, y)];
-        if (listOfCells.ContainsKey((x - 1, y)))
-            a[1] = listOfCells[(x - 1, y)];
-        if (listOfCells.ContainsKey((x, y + 1)))
-            a[2] = listOfCells[(x, y + 1)];
-        if (listOfCells.ContainsKey((x, y - 1)))
-            a[3] = listOfCells[(x, y - 1)];
-        return a;
-    }
-
-    public void DestroyCell((int, int) a)
-    {
-        if (listOfCells.ContainsKey(a))
-        {
-            listOfCells[(a)].Destroy();
-        }
     }
 }
