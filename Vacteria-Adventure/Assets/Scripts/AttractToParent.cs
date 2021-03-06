@@ -7,7 +7,7 @@ public class AttractToParent : MonoBehaviour
     public Rigidbody2D rg;
     private int tick = 99;
     public Transform TargetPosition;
-
+    //
     private void FixedUpdate()
     {
         rg.velocity = 5 * (new Vector2((-transform.localPosition.x + TargetPosition.position.x), -transform.localPosition.y + TargetPosition.position.y)) * (Vector2.Distance(TargetPosition.position, transform.position));
