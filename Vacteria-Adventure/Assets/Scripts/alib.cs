@@ -4,14 +4,16 @@ using UnityEngine;
 
 public static class alib
 {
-    public enum CellType { head, simple, hardened, stone, dirt, miner };
+    public enum CellType { head, simple, hardened, miner, vines, ultisols, scoria, tuff, myionite, steel, titanium };
 
     public enum Direction { UP, DOWN, RIGHT, LEFT };
 
-    public enum GENES { Production, Speed, Hardness, Immune, Foods, ToxicAbility, Volume };
+    public enum GENES { Production, Speed, Hardness, Immune, MutationRate, ToxicAbility, Volume };
 
     public static bool isMoving = false;
-    public static bool isEditMode = true;
+    public static bool isLab = false;
+
+    public static List<Gene> genes = new List<Gene>();
 
     public static void MoveCell(int x, int y, Cell a)
     {

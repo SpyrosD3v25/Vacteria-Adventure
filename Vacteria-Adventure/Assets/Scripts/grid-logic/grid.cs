@@ -8,8 +8,8 @@ public class grid : MonoBehaviour
     public (int, int) headPosition;
     public Dictionary<(int, int), Cell> listOfCells = new Dictionary<(int, int), Cell>();
     public GameObject Cell;
-    public GameObject PlaceHolder;
     public GameObject liquidParticle;
+    public Sprite[] stoneTypes;
 
     public delegate void Action();
 
@@ -29,7 +29,8 @@ public class grid : MonoBehaviour
         tick++;
         if (tick == 50)
         {
-            BodyMovement();
+            if (!alib.isLab)
+                BodyMovement();
             tick = 0;
         }
     }
@@ -93,15 +94,12 @@ public class grid : MonoBehaviour
 
     private void Start()
     {
-        CreateCell(new int[] { 0, 0 }, alib.CellType.head);
-        CreateCell(new int[] { 1, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 2, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 3, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 4, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 5, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 6, 0 }, alib.CellType.simple);
-        CreateCell(new int[] { 6, 1 }, alib.CellType.simple);
-        CreateCell(new int[] { 4, 3 }, alib.CellType.stone);
+        CreateCell(new int[] { 12, 0 }, alib.CellType.head);
+        CreateCell(new int[] { 13, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 14, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 15, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 16, 0 }, alib.CellType.simple);
+        CreateCell(new int[] { 17, 0 }, alib.CellType.simple);
     }
 
     public void CreateCell(int[] position, alib.CellType cellType)
@@ -121,32 +119,24 @@ public class grid : MonoBehaviour
                 a.AddComponent<HardenedCell>();
                 break;
 
-            case alib.CellType.laser:
-                a.AddComponent<Lasercell>();
-                break;
-
             case alib.CellType.miner:
                 a.AddComponent<MinerCell>();
                 break;
 
-            case alib.CellType.stone:
-                a.AddComponent<SimpleCell>();
+            default:
+                Destroy(a.GetComponent<Animator>());
+                a.AddComponent<OreCell>();
                 break;
-
-            case alib.CellType.dirt:
-                a.AddComponent<SimpleCell>();
-                break;
-
-            default: return;
         }
         Cell b = a.GetComponent<Cell>();
         GameObject c;
-        for (int i = 0; i < 45; i++)
-        {
-            c = Instantiate(liquidParticle, a.transform.position, Quaternion.identity);
-            AttractToParent at = c.GetComponent<AttractToParent>();
-            at.TargetPosition = a.transform;
-        }
+        if (!a.GetComponent<OreCell>())
+            for (int i = 0; i < 45; i++)
+            {
+                c = Instantiate(liquidParticle, a.transform.position, Quaternion.identity);
+                AttractToParent at = c.GetComponent<AttractToParent>();
+                at.TargetPosition = a.transform;
+            }
         b.position = position;
         b.cellType = cellType;
         b.UpdateData();

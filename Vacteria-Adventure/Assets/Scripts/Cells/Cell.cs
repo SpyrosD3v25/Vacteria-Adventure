@@ -24,11 +24,6 @@ public class Cell : MonoBehaviour
         grid.instance.UpdateCells += UpdateData;
     }
 
-    private void FixedUpdate()
-    {
-        TextureUpdate();
-    }
-
     public virtual void TextureUpdate()
     {
         if (sr == null) sr = GetRenderer();
@@ -39,24 +34,40 @@ public class Cell : MonoBehaviour
                 an.SetTrigger("Core");
                 break;
 
-            case alib.CellType.simple:
-                an.SetTrigger("Cytoplasm");
-                break;
-
             case alib.CellType.hardened:
                 an.SetTrigger("Capsule");
                 break;
 
-            case alib.CellType.dirt:
-
-                break;
-
-            case alib.CellType.stone:
-
-                break;
-
             case alib.CellType.miner:
 
+                break;
+
+            case alib.CellType.vines:
+                sr.sprite = grid.instance.stoneTypes[0];
+                break;
+
+            case alib.CellType.ultisols:
+                sr.sprite = grid.instance.stoneTypes[1];
+                break;
+
+            case alib.CellType.scoria:
+                sr.sprite = grid.instance.stoneTypes[2];
+                break;
+
+            case alib.CellType.tuff:
+                sr.sprite = grid.instance.stoneTypes[3];
+                break;
+
+            case alib.CellType.myionite:
+                sr.sprite = grid.instance.stoneTypes[4];
+                break;
+
+            case alib.CellType.steel:
+                sr.sprite = grid.instance.stoneTypes[5];
+                break;
+
+            case alib.CellType.titanium:
+                sr.sprite = grid.instance.stoneTypes[6];
                 break;
         }
     }
