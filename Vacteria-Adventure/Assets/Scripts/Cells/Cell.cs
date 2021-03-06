@@ -7,10 +7,16 @@ public class Cell : MonoBehaviour
     public int[] position = new int[2];
     public alib.CellType cellType;
     public SpriteRenderer sr;
+    public Animator an;
 
     public SpriteRenderer GetRenderer()
     {
         return GetComponent<SpriteRenderer>();
+    }
+
+    public Animator GetAnimator()
+    {
+        return GetComponent<Animator>();
     }
 
     private void Start()
@@ -26,34 +32,31 @@ public class Cell : MonoBehaviour
     public virtual void TextureUpdate()
     {
         if (sr == null) sr = GetRenderer();
+        if (an == null) an = GetAnimator();
         switch (cellType)
         {
             case alib.CellType.head:
-                sr.sprite = grid.instance.Head;
+                an.SetTrigger("Core");
                 break;
 
             case alib.CellType.simple:
-                sr.sprite = grid.instance.Simple;
+                an.SetTrigger("Cytoplasm");
                 break;
 
             case alib.CellType.hardened:
-                sr.sprite = grid.instance.Hardened;
-                break;
-
-            case alib.CellType.laser:
-                sr.sprite = grid.instance.Hardened;
+                an.SetTrigger("Capsule");
                 break;
 
             case alib.CellType.dirt:
-                sr.sprite = grid.instance.Hardened;
+
                 break;
 
             case alib.CellType.stone:
-                sr.sprite = grid.instance.Hardened;
+
                 break;
 
             case alib.CellType.miner:
-                sr.sprite = grid.instance.Head;
+
                 break;
         }
     }

@@ -10,9 +10,6 @@ public class grid : MonoBehaviour
     public GameObject Cell;
     public GameObject PlaceHolder;
     public GameObject liquidParticle;
-    public Sprite Head;
-    public Sprite Simple;
-    public Sprite Hardened;
 
     public delegate void Action();
 
